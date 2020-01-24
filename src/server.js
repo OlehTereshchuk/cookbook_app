@@ -6,12 +6,16 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
+// const client = new Client({
+//   user: 'postgres',
+//   password: '2236438o',
+//   host: 'localhost',
+//   port: 5432,
+//   database: 'postgres',
+// });
 const client = new Client({
-  user: 'postgres',
-  password: '2236438o',
-  host: 'localhost',
-  port: 5432,
-  database: 'postgres',
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });
 
 client.connect(err => (err || ''));

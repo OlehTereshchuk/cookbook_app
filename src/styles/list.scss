@@ -62,6 +62,10 @@
     transform: translateX(-50%);
     padding: 20px;
     background-color: #f7797d;
+
+    @media (max-width: 500px) {
+      width: 80vw;
+    }
   }
 
   &__edit-close {
