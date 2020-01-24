@@ -6,7 +6,15 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-const client = new Client({
+// const client = new Client({
+//   user: 'postgres',
+//   password: '2236438o',
+//   host: 'localhost',
+//   port: 5432,
+//   database: 'postgres',
+// });
+
+const client = new Client ({
   user: 'ibunnuxklqoodi',
   password: '30a1e7070696cbde1dd256f286fb508785325d5c2e205e5a6d599b68f0560e6c',
   host: 'ec2-54-247-181-232.eu-west-1.compute.amazonaws.com',
@@ -28,13 +36,13 @@ app.listen(port, () => {
 
 app.get('/products', (req, res) => {
   const GET_RECIPES_QUERY = 'select * from recipe order by id_recipe desc';
-  const GET_PREVIOUS_VERSIONS
-    = `select recipe.id_recipe, prev_preparing, id, date from recipe join
-    previous_recipe on recipe.id_recipe = previous_recipe.id_recipe order
-    by previous_recipe.id desc`;
+  // const GET_PREVIOUS_VERSIONS
+  //   = `select recipe.id_recipe, prev_preparing, id, date from recipe join
+  //   previous_recipe on recipe.id_recipe = previous_recipe.id_recipe order
+  //   by previous_recipe.id desc`;;${GET_PREVIOUS_VERSIONS}
 
   client.query(
-    `${GET_RECIPES_QUERY};${GET_PREVIOUS_VERSIONS}`,
+    `${GET_RECIPES_QUERY}`,
     (err, results) => (err ? res.send(err) : res.json({ data: results })),
   );
 });
