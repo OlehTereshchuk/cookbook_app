@@ -17,7 +17,7 @@ const client = new Client({
 client.connect(err => (err || ''));
 
 app.use(cors());
-app.use(express.static('build'));
+// app.use(express.static('build'));
 
 app.listen(port, () => {
   console.log('server is working');
