@@ -6,14 +6,6 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-// const client = new Client({
-//   user: 'postgres',
-//   password: '2236438o',
-//   host: 'localhost',
-//   port: 5432,
-//   database: 'postgres',
-// });
-
 const client = new Client ({
   user: 'ibunnuxklqoodi',
   password: '30a1e7070696cbde1dd256f286fb508785325d5c2e205e5a6d599b68f0560e6c',
