@@ -1,0 +1,65 @@
+.form {
+  box-sizing: border-box;
+  padding: 10px;
+  display: none;
+  background-color: #f7797d;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: relative;
+
+  &--active {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    width: 425px;
+  }
+
+  &__input {
+    max-width: 200px;
+    margin-bottom: 5px;
+  }
+
+  &__textarea {
+    max-width: 400px;
+    min-width: 200px;
+    min-height: 200px;
+    max-height: 300px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
+
+  &__submit {
+    max-width: 200px;
+    margin: auto;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #ffe995;
+    border: 1px solid black;
+    font-weight: 700;
+  }
+
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    padding: 5px;
+    font-weight: bold;
+    background: none;
+    border: none;
+  }
+
+  &__title {
+    margin: 0;
+  }
+}

@@ -1,0 +1,19 @@
+.header {
+  &__button {
+    cursor: pointer;
+    background-color: #ffe995;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    border: 1px solid grey;
+    transition: color 0.5s;
+
+    &:hover {
+      background-color: darken(#ffe995, 20);
+      color: white;
+    }
+  }
+}
+
