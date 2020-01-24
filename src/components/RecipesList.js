@@ -8,10 +8,10 @@ const RecipesList = ({ recipes }) => {
   return (
     <dl className="list">
       {recipes.map(({
-        id_recipe: id, title, preparing, date_of_post, history,
+        id_recipe: id, title, preparing, date, history,
       }) => {
-        const dateParts = date_of_post.split('-');
-        const date = new Date(
+        const dateParts = date.split('-');
+        const normalDate = new Date(
           dateParts[0], dateParts[1] - 1,
           dateParts[2].substr(0, 2),
         );
@@ -25,7 +25,7 @@ const RecipesList = ({ recipes }) => {
             id={id}
             title={title}
             preparing={preparing}
-            date={date}
+            date={normalDate}
           />
         );
       })}

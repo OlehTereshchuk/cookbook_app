@@ -34,20 +34,28 @@ app.listen(port, () => {
   console.log('server is working');
 });
 
-app.get('/products', (req, res) => {
+app.get('/recipes', (req, res) => {
   const GET_RECIPES_QUERY = 'select * from recipe order by id_recipe desc';
-  // const GET_PREVIOUS_VERSIONS
-  //   = `select recipe.id_recipe, prev_preparing, id, date from recipe join
-  //   previous_recipe on recipe.id_recipe = previous_recipe.id_recipe order
-  //   by previous_recipe.id desc`;;${GET_PREVIOUS_VERSIONS}
 
   client.query(
     `${GET_RECIPES_QUERY}`,
-    (err, results) => (err ? res.send(err) : res.json({ data: results })),
+    (err, results) => (err ? res.send(err) : res.json(results.rows)),
   );
 });
 
-app.post('/products', bodyParser.text(), (req, res) => {
+app.get('/previousRecipes', (req, res) => {
+  const GET_PREVIOUS_VERSIONS
+    = `select recipe.id_recipe, prev_preparing, id, recipe.date from recipe join
+    previous_recipe on recipe.id_recipe = previous_recipe.id_recipe order
+    by previous_recipe.id desc`;
+
+  client.query(
+    `${GET_PREVIOUS_VERSIONS}`,
+    (err, results) => (err ? res.send(err) : res.json(results.rows)),
+  );
+});
+
+app.post('/add', bodyParser.text(), (req, res) => {
   const { title, preparing } = JSON.parse(req.body);
   const INSERT_RECIPE_QUERY
     = `insert into recipe (title, preparing)

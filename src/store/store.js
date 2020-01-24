@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { loadData, addRecipe, editRecipe } from './api';
+import {
+  loadRecipes, loadPreviousRecipes, addRecipe, editRecipe
+} from './api';
 
 const SET_RECIPES = 'SET_RECIPES';
 
@@ -10,17 +12,18 @@ export const setRecipes = recipes => ({
 });
 
 export const loadDataFromServer = () => async(dispatch) => {
-  // const { data: [recipes, prevRecipes] } = await loadData();
-  // const preparedData = recipes.rows.map(recipe => ({
-  //   ...recipe,
-  //   history: prevRecipes.rows.filter(
-  //     prevRecipe => prevRecipe.id_recipe === recipe.id_recipe,
-  //   ),
-    const data = await loadData();
-    console.log(data);
-  // }));
+  const [recipes, prevRecipes] = await Promise.all([
+    loadRecipes(), loadPreviousRecipes()
+  ]);
 
-  // dispatch(setRecipes(preparedData));
+  const preparedData = recipes.map(recipe => ({
+    ...recipe,
+    history: prevRecipes.filter(
+      prevRecipe => prevRecipe.id_recipe === recipe.id_recipe,
+    ),
+  }));
+
+  dispatch(setRecipes(preparedData));
 };
 
 export const setNewRecipe = (title, preparing) => async(dispatch) => {

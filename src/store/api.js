@@ -1,5 +1,11 @@
-export const loadData = async() => {
-  const response = await fetch('/products');
+export const loadRecipes = async() => {
+  const response = await fetch('/recipes');
+
+  return response.json();
+};
+
+export const loadPreviousRecipes = async() => {
+  const response = await fetch('/previousRecipes');
 
   return response.json();
 };
@@ -10,7 +16,7 @@ export const addRecipe = async(title, preparing) => {
     preparing,
   });
 
-  const response = await fetch('/products', {
+  const response = await fetch('/add', {
     method: 'POST',
     body: data,
   });
