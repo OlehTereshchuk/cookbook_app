@@ -10,15 +10,17 @@ export const setRecipes = recipes => ({
 });
 
 export const loadDataFromServer = () => async(dispatch) => {
-  const { data: [recipes, prevRecipes] } = await loadData();
-  const preparedData = recipes.rows.map(recipe => ({
-    ...recipe,
-    history: prevRecipes.rows.filter(
-      prevRecipe => prevRecipe.id_recipe === recipe.id_recipe,
-    ),
-  }));
+  // const { data: [recipes, prevRecipes] } = await loadData();
+  // const preparedData = recipes.rows.map(recipe => ({
+  //   ...recipe,
+  //   history: prevRecipes.rows.filter(
+  //     prevRecipe => prevRecipe.id_recipe === recipe.id_recipe,
+  //   ),
+    const data = await loadData();
+    console.log(data);
+  // }));
 
-  dispatch(setRecipes(preparedData));
+  // dispatch(setRecipes(preparedData));
 };
 
 export const setNewRecipe = (title, preparing) => async(dispatch) => {
