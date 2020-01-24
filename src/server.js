@@ -18,16 +18,14 @@ client.connect(err => (err || ''));
 
 app.use(cors());
 
-const publicPath = path.join(__dirname, '..', 'public');
-
-app.use(express.static(publicPath));
+app.use(express.static(build));
 
 app.listen(port, () => {
   console.log('server is working');
 });
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile('index.html');
 });
 
 app.get('/products', (req, res) => {
