@@ -17,7 +17,10 @@ const client = new Client({
 client.connect(err => (err || ''));
 
 app.use(cors());
-// app.use(express.static('build'));
+
+const publicPath = path.join(__dirname, '..', 'public');
+
+app.use(express.static(publicPath));
 
 app.listen(port, () => {
   console.log('server is working');
