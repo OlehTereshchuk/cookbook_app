@@ -10,7 +10,7 @@ export const addRecipe = async(title, preparing) => {
     preparing,
   });
 
-  const response = await fetch('http://localhost:4000/products', {
+  const response = await fetch('/products', {
     method: 'POST',
     body: data,
   });
@@ -26,7 +26,7 @@ export const editRecipe = async(id, text, date, prevText) => {
     prevText,
   });
 
-  const response = await fetch('http://localhost:4000/edit', {
+  const response = await fetch('/edit', {
     method: 'PATCH',
     body: data,
   });
