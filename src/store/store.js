@@ -27,9 +27,11 @@ export const loadDataFromServer = () => async(dispatch) => {
 };
 
 export const setNewRecipe = (title, preparing) => async(dispatch) => {
-  addRecipe(title, preparing);
-
-  await dispatch(loadDataFromServer());
+  const response = await addRecipe(title, preparing);
+  
+  if (response) {
+    await dispatch(loadDataFromServer());
+  }
 };
 
 export const setEditedRecipe = (
