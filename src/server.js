@@ -26,6 +26,10 @@ app.listen(port, () => {
   console.log('server is working');
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.get('/products', (req, res) => {
   const GET_RECIPES_QUERY = 'select * from recipe order by id_recipe desc';
   const GET_PREVIOUS_VERSIONS
